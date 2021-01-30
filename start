@@ -27,8 +27,8 @@ echo
 
 echo Starting image ${IMAGE_NAME}...
 echo .....To quit, type exit.....
-echo .....To re-connect later, type ./connect.sh $IMAGE_NAME.....
-echo .....To stop or terminate, type ./stop.sh  $IMAGE_NAME or ./terminate $IMAGE_NAME.....
+echo .....To re-connect later, type connect $IMAGE_NAME.....
+echo .....To stop or terminate, type stop  $IMAGE_NAME or terminate $IMAGE_NAME.....
 
 echo
 echo
@@ -42,9 +42,9 @@ fi
 echo
 echo
 
-echo "sudo docker exec -it \${1} /bin/bash" > connect.sh
-echo "sudo docker stop \${1}" > stop.sh
-echo "./stop.sh \${1}; sudo docker rm \${1}" > terminate.sh
-chmod +x connect.sh stop.sh terminate.sh
+echo "sudo docker exec -it \${1} /bin/bash" > connect
+echo "sudo docker stop \${1}" > stop
+echo "stop \${1}; sudo docker rm \${1}" > terminate
+chmod +x connect stop terminate
 
 sudo docker exec -it ${IMAGE_NAME} /bin/bash

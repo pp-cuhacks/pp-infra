@@ -7,7 +7,8 @@ SSH into EC2 instance and run:
 sudo yum install git -y
 git clone https://github.com/pp-cuhacks/pp-infra.git
 cd pp-infra
-./start.sh your-container-name
+export PATH=$PATH:$(pwd)
+start your-container-name
 ```
 
 If you see the following, you are inside the container.
@@ -22,11 +23,11 @@ To exit the container, type:
 
 To reconnect to the container, type:
 ```
-ec2 $ ./connect.sh your-container-name
+ec2 $ connect your-container-name
 ```
 
 To stop/terminate container, type:
 ```
-ec2 $ ./stop.sh your-container-name
-ec2 $ ./terminate.sh your-container-name
+ec2 $ stop your-container-name
+ec2 $ terminate your-container-name
 ```
