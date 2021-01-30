@@ -20,6 +20,6 @@ RUN unzip awscliv2.zip
 RUN sudo ./aws/install
 
 # Install nodejs and update
-RUN sudo apt install nodejs
-RUN sudo apt install npm
+RUN sudo apt-get install -y nodejs 
+RUN sudo apt-get install -y npm 
 RUN sudo npm cache clean -f; sudo npm install -g n; sudo n stable

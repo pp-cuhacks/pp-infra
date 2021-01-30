@@ -12,7 +12,14 @@ fi
 echo Starting docker...
 sudo service docker start
 
-IMAGE_NAME="${1:-workspace}"    # Use input variable or default to 'workspace'
+# Use input variable or default to 'workspace'
+if [ -z $1 ]
+then 
+    IMAGE_NAME="workspace" 
+else
+    IMAGE_NAME="$1"
+fi
+
 echo Building docker image \"${IMAGE_NAME}\"
 sudo docker build -t ${IMAGE_NAME} .
 
