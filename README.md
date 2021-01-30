@@ -5,8 +5,8 @@ Infrastructure stack containing Dockerfile to host pp-cuhacks
 SSH into EC2 instance and run:
 ```
 sudo yum install git -y
-git clone https://github.com/jerry-hall/ec2-docker-env.git
-cd ec2-docker-env
+git clone https://github.com/pp-cuhacks/pp-infra.git
+cd pp-infra
 ./start.sh your-container-name
 ```
 
