@@ -1,32 +1,39 @@
-cd /
-cd pp-cuhacks
+#!/bin/bash
+while true; do
 
-git remote update
-STATUS=`git status -uno | grep behind`
+    cd /pp-cuhacks
 
-if [[ -z $STATUS ]]     # if branch is up to date, do nothing
-then
-    echo "do nothing"
-else
+    git remote update
+
+    if [[ -z $(git status -uno | grep behind) ]]     # if branch is up to date, do nothing
+    then
+        echo "do nothing"
+    else
+        git fetch --all
+        git add .
+        git reset --hard 
+        git pull
+        npm i
+        npm run build
+        wait  # wait for background jobs to finish
+    fi
+
+
+    cd /pp-api
+
     git fetch --all
     git add .
-    git reset --hard 
+    git reset --hard
     git pull
     npm i
-    npm run build
-fi
+    cp -r /pp-cuhacks/build /pp-api
+    npm run build &
+
+    echo sleeping 30 s
+    sleep 30
+    echo "
 
 
-cd ../pp-api
 
-git fetch --all
-git add .
-git reset --hard
-git pull
-npm i
-cp ../pp-cuhacks/build ./build
-npm run build
-if [[ $(ps aux | grep nodemon | wc -l) == 1 ]]
-then
-    nodemon server
-fi
+    "
+done
