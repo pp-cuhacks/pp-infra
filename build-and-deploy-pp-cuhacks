@@ -4,20 +4,29 @@ cd pp-cuhacks
 git remote update
 STATUS=`git status -uno | grep behind`
 
-if [[ -z $STATUS ]]     # if branch is up to date, exit
+if [[ -z $STATUS ]]     # if branch is up to date, do nothing
 then
-    exit 0
+    echo "do nothing"
+else
+    git fetch --all
+    git add .
+    git reset --hard 
+    git pull
+    npm i
+    npm run build
 fi
 
-git fetch --all
-git add .
-git reset --hard 
-git pull
-npm run build
 
 cd ../pp-api
 
-rm -rf build
+git fetch --all
+git add .
+git reset --hard
+git pull
+npm i
 cp ../pp-cuhacks/build ./build
 npm run build
-nodemon server
+if [[ $(ps aux | grep nodemon | wc -l) == 1 ]]
+then
+    nodemon server
+fi
