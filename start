@@ -37,7 +37,7 @@ echo
 if [[ -z $(sudo docker container ls | grep ${IMAGE_NAME}) ]]
 then
     echo Image ID:
-    sudo docker run --name ${IMAGE_NAME} -p 80:3000 -dt ${IMAGE_NAME} 
+    sudo docker run --name ${IMAGE_NAME} -p 80:4000 -dt ${IMAGE_NAME} 
 fi
 echo
 echo
