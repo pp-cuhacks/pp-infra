@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-EXPOSE 3000
+EXPOSE 4000
 
 # Install dependencies
 RUN apt-get update
