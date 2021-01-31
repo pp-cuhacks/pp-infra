@@ -1,0 +1,23 @@
+cd /
+cd pp-cuhacks
+
+git remote update
+STATUS=`git status -uno | grep behind`
+
+if [[ -z $STATUS ]]     # if branch is up to date, exit
+then
+    exit 0
+fi
+
+git fetch --all
+git add .
+git reset --hard 
+git pull
+npm run build
+
+cd ../pp-api
+
+rm -rf build
+cp ../pp-cuhacks/build ./build
+npm run build
+nodemon server

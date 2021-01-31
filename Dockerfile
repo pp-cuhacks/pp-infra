@@ -23,3 +23,7 @@ RUN sudo ./aws/install
 RUN sudo apt-get install -y nodejs 
 RUN sudo apt-get install -y npm 
 RUN sudo npm cache clean -f; sudo npm install -g n; sudo n stable
+
+# Create cronjob to build and deploy every 1 min
+COPY build-and-deploy-pp-cuhacks /
+RUN (crontab -l 2>/dev/null; echo "*/1 * * * * /build-and-deploy-pp-cuhacks") | crontab -
